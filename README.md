@@ -20,5 +20,9 @@ terraform apply -auto-approve
 terraform destroy -auto-approve
 
 
+export KUBECONFIG="${PWD}/kubeconfig-prod"
+/home/antonio/github-project/Kiratech-Challenge/gke-creation
+
+helm upgrade asn-deployment ../helm-deployment/asn-deployment
 
 

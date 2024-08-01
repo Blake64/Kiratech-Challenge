@@ -1,0 +1,39 @@
+replicaCount: 1
+
+image:
+  repository: httpd
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+mysql:
+  image:
+    repository: mysql
+    tag: "5.7"
+    pullPolicy: IfNotPresent
+  rootPassword: "password"
+  database: "mydatabase"
+
+nodejs:
+  image:
+    repository: node
+    tag: "18"
+    pullPolicy: IfNotPresent
+  # Aggiungi qui eventuali variabili d'ambiente necessarie per Node.js
+
+service:
+  type: ClusterIP
+  port: 80
+
+mysqlService:
+  type: ClusterIP
+  port: 3306
+
+nodejsService:
+  type: ClusterIP
+  port: 3000
+
+service:
+  type: LoadBalancer
+  port: 80
+
+resources: {}
