@@ -24,5 +24,7 @@ export KUBECONFIG="${PWD}/kubeconfig-prod"
 /home/antonio/github-project/Kiratech-Challenge/gke-creation
 
 helm upgrade asn-deployment ../helm-deployment/asn-deployment
+helm install asn-deployment ../helm-deployment/asn-deployment
+helm uninstall asn-deployment ../helm-deployment/asn-deployment
 
 
