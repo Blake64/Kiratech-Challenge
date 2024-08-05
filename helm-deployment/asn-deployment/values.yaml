@@ -18,7 +18,6 @@ nodejs:
     repository: node
     tag: "18"
     pullPolicy: IfNotPresent
-  # Aggiungi qui eventuali variabili d'ambiente necessarie per Node.js
 
 service:
   type: ClusterIP

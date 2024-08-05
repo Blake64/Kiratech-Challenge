@@ -21,6 +21,8 @@ resource "local_file" "kubeconfig" {
   filename = "kubeconfig-${var.env_name}"
 }
 
+# Creazione network
+
 module "gcp-network" {
   source       = "terraform-google-modules/network/google"
   version      = "6.0.0"
@@ -49,7 +51,10 @@ module "gcp-network" {
   }
 }
 
+
 data "google_client_config" "default" {}
+
+# Creazione 1 master 2 worker
 
 provider "kubernetes" {
   host                   = "https://${module.gke.endpoint}"
@@ -72,7 +77,6 @@ module "gke" {
   node_pools = [
     {
       name                      = "node-pool"
-      #machine_type              = "e2-medium"
       machine_type              = "e2-small"
       node_locations            = "europe-west1-b,europe-west1-c,europe-west1-d"
       min_count                 = 1
