@@ -86,13 +86,45 @@ module "gke" {
   ]
 }
 
+# Creazione namespace kiratech-challenge
+
 resource "kubernetes_namespace" "kiratech_challenge" {
   metadata {
     name = "kiratech-challenge"
   }
 }
 
+# Creazione namespace kube-bench-ns 
+resource "kubernetes_namespace" "kube-bench-ns" {
+  metadata {
+    name = "kube-bench-ns"
+  }
+}
 
+
+# Lancio Test di sicurezza Kube-bench per GKE
+
+
+resource "null_resource" "run_kube_bench" {
+
+  provisioner "local-exec" {
+    command = <<EOT
+      
+      export KUBECONFIG=/home/antonio/github-project/Kiratech-Challenge/2-solution/${local_file.kubeconfig.filename}
+
+      
+       kubectl apply -f /home/antonio/github-project/Kiratech-Challenge/kb-deployment/gke/kube-bench-gke.yml
+
+       
+    EOT
+  }
+
+    provisioner "local-exec" {
+    command = "echo 'Kube-bench completato è possibile visualizzare i risultati accedendo ai log del pod nel namespace kube-bench-ns tramite il comando kubectl logs <PODNAME>'"
+  }
+depends_on = [local_file.kubeconfig]
+
+}
 
 
 
