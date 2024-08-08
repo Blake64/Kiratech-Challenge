@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: apache-deployment
+  namespace: kiratech-challenge
 spec:
   replicas: 1
   selector:
@@ -24,6 +25,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql-deployment
+  namespace: kiratech-challenge
 spec:
   replicas: 1
   selector:
@@ -51,6 +53,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodejs-deployment
+  namespace: kiratech-challenge
 spec:
   replicas: 1
   selector:
