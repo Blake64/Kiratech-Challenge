@@ -18,6 +18,7 @@ nodejs:
     repository: node
     tag: "18"
     pullPolicy: IfNotPresent
+ 
 
 service:
   type: ClusterIP
